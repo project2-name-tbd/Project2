@@ -18,11 +18,11 @@ function ingredientAppend(event) {
     searchValue: ingredient,
     term: ingredient,
   };
-  //   Ingredient.create(ingredientObject)
-  //     .then((dbIngredientData) => {
-  //       console.log(dbIngredientData);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-}
+//   //   Ingredient.create(ingredientObject)
+//   //     .then((dbIngredientData) => {
+//   //       console.log(dbIngredientData);
+//   //     })
+//   //     .catch((err) => {
+//   //       console.log(err);
+//   //     });
+// }
