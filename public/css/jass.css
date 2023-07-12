@@ -36,6 +36,7 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0;
   font-weight: 200;
+  color: #2d3e50;
 }
 
 /* Grouping content
@@ -370,6 +371,7 @@ h5,
 h6 {
   margin: 0 0 0.5rem;
   line-height: 1.25;
+  color: #2d3e50;
 }
 
 h1 {
@@ -930,7 +932,7 @@ a:hover {
 }
 
 .bg-light {
-  background-color: #d9e9e8 !important;
+  background-color: #fdf8c3 !important;
 }
 
 .bg-dark {
