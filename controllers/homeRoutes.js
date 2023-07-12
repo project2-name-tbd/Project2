@@ -3,11 +3,11 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get request, after client loggs in, presented with list of their saved recipes (on right side of page?)
-router.get('/', withAuth, async (req, res) => {
-  try {
-    const userData = await 
-  }
-})
+// router.get('/', withAuth, async (req, res) => {
+//   try {
+//     const userData = await 
+//   }
+// })
 
 router.get('/', withAuth, async (req, res) => {
   try {

@@ -23,10 +23,14 @@ Recipe.init({
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  //   not sure how to do ingredient list... array of objects?
+  //   not sure how to do ingredient list... array of objects? 
   ingredients: {
     type: DataTypes.STRING,
     allowNull: false,
+    references: {
+      model: 'ingredient', 
+      key: 'id'
+    }
   },
   created_by: {
     type: DataTypes.STRING,
@@ -36,6 +40,8 @@ Recipe.init({
     type: DataTypes.STRING,
     allowNull: true,
   },
+},
+{  
   sequelize,
   timestamps: false,
   freezeTableName: true,
@@ -43,4 +49,4 @@ Recipe.init({
   modelName: "recipe",
 });
 
-module.exports;
+module.exports = Recipe;

@@ -1,11 +1,14 @@
 const User = require("./User");
 const Recipe = require("./recipe");
 const recipeJoin = require("./recipeJoin");
+const Ingredient = require("./ingredient")
 
-module.exports = { User };
+module.exports = { User, Recipe, recipeJoin, Ingredient };
 
 // many to many relationships between:
 // users have many recipes saved,
+
+
 
 User.belongsToMany(Recipe, {
   through: recipeJoin,
@@ -31,3 +34,9 @@ Recipe.hasMany(recipeJoin, {
 User.hasMany(recipeJoin, {
   foreignKey: "user_id",
 });
+
+
+// ingredients belong to recipes? changes to FK needed?
+// Recipe.hasMany(Ingredient, {
+
+// });

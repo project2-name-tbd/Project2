@@ -24,11 +24,16 @@ recipeJoin.init( {
             key: 'id'   
         }
       }, 
+      
+      
+    },   
       {
         sequelize,
         timestamps: true,
         underscored: true,
         freezeTableName: true,
         modelName: 'recipeJoin',
-    }
-})
+    
+});
+
+module.exports = recipeJoin;
