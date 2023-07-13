@@ -20,11 +20,6 @@ recipeJoin.belongsTo(User, {
 recipeJoin.belongsTo(Recipe, {
   foreignKey: "recipe_id",
 });
-Recipe.hasMany(recipeJoin, {
-  foreignKey: "recipe_id",
-});
-User.hasMany(recipeJoin, {
-  foreignKey: "user_id",
-});
+
 
 module.exports = { User, Recipe, recipeJoin, Ingredient };
