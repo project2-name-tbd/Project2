@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Chocolate Chip Cookies",
+    "description": "step one",
+    "measurement": true,
+    "owner_id": null
+  },
+  {
+    "id": 2,
+    "title": "PB&J",
+    "description": "slap Pb on PB",
+    "measurement": true,
+    "owner_id": null
+  }
+]

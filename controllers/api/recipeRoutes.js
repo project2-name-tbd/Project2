@@ -8,8 +8,7 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       measurement: req.body.measurement,
-      ingredients: req.body.ingredients, //this will be a list, need to update to account for multiple items
-      created_by: req.body.username,
+      owner_id: req.body.owner_id,
       timestamp: new Date().toLocaleDateString(),
     });
   } catch (err) {
@@ -19,4 +18,47 @@ router.post("/", async (req, res) => {
 });
 
 // Display the saved recipes
-router.post("/", async (req, res) => {});
+// router.get("/", async (req, res) => {
+//   try {
+//     const dbRecipes = await Recipe.findAll({
+//       include: [
+//         {
+//           model: Recipe,
+//           attributes: [
+//               "id",
+//               "title",
+//               "description",
+//               "measurement",
+//               "owner_id"
+//             ],
+//         },
+//       ],
+//     });
+//     const allRecipes = dbRecipes.get({ plain: true });
+//     res.render("recipe", { allRecipes });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const dbSavedRecipes = await Recipe.findByPk(req.params.id, {
+//       include: [{ model: recipeJoin }, { model: User }],
+//     });
+
+//     if (!dbSavedRecipes) {
+//       console.log("No recipes to display");
+//       return;
+//     }
+
+//     const savedRecipes = dbRecipes.get({ plain: true });
+//     res.render("recipe", { savedRecipes });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
+
+module.exports = router;
