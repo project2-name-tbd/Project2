@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,17 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Registry</title>
   <link rel="stylesheet" href="/css/jass.css">
-</head>
+</head><div class="container-fluid">
+  <body> 
+    <div class="row">
+    <div class="col-6">
+      <h2>Add Recipe</h2>
 
-<body> 
+      <form class="form recipe-form form-control">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="recipe-title" class="form-label">Title</label>
+            <input class="form-control" type="text" id="recipe-title" />
+          </div>
+          <label for="recipe-description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            type="text"
+            id="recipe-description"
+          ></textarea>
+          <div class="form-control mt-3 pb-3 bg-light">
+            <label for="recipe-ingredients" class="form-label"
+              >Ingredients</label
+            >
+            <input
+              id="searchIngredient"
+              class="form-control mb-2"
+              type="text"
+            />
 
-    
-        <h1>Add Recipe</h1>
-            <form>
-                <input type="text" placeholder="Title" />
-                <input type="text" placeholder="Description" />
-                <button id="saveRecipe">Save</button>
-            </form>
+            <label for="recipe-title" class="form-label">Title</label>
+            <input class="form-control" type="text" id="recipe-title" />
+
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Select a unit of measure</option>
+              <option value="1">Teaspoon</option>
+              <option value="2">Tablespoon</option>
+              <option value="3">Ounce</option>
+              <option value="4">Cup</option>
+              <option value="5">Liter</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <button
+            id="recipePublish"
+            class="btn btn btn-primary mt-3 mb-2"
+            type="submit"
+          >
+            Publish
+          </button>
+          <button class="btn btn btn-secondary mt-3 mb-2" type="submit">
+            Save as Draft
+          </button>
+        </div>
+      </form>
+      <div>
+        <ul id="recipeList"></ul>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/js/login.js"></script>
+<script>
+  src = "/js/ingredientAdd.js";
+</script>
