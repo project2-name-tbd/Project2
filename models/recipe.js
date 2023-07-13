@@ -7,27 +7,30 @@ Recipe.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'Recipe'
     },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'Recipe description'
     },
     //   recipe-level setting that controls metric/us
     measurement: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true
     },
     //   not sure how to do ingredient list... array of objects?
-    // ingredients: {
+    // ingredient_id: {
     //   type: DataTypes.STRING,
-    //   allowNull: false,
+    //   allowNull: true,
     //   references: {
     //     model: 'ingredient',
     //     key: 'id'
@@ -35,7 +38,7 @@ Recipe.init(
     // },
     owner_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       onDelete: "CASCADE",
       references: {
         model: "user",

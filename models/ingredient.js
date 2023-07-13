@@ -10,13 +10,13 @@ Ingredient.init(
       allowNull: false,
       primaryKey: true,
     },
-    searchValue: {
+    ingredientId: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    ingredientId: {
+    searchValue: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     term: {
       type: DataTypes.STRING,
@@ -24,7 +24,7 @@ Ingredient.init(
     },
     useCount: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
   },
   {
