@@ -19,22 +19,23 @@ const loginFormHandler = async (event) => {
   }
 };
 
-const signupFormHandler = async (event) => {
+// when client clicks 'signup' link from login page, taken to the signup page
+const signupButtonHandler = async (event) => {
   event.preventDefault();
 
   
-  const email = document.querySelector("#email-signup").value.trim();
-  const password = document.querySelector("#password-signup").value.trim();
-console.log(email, password)
-  if (email && password) {
-    const response = await fetch("/api/users", {
+  const signUpButton = document.querySelector("#signup")
+ 
+console.log(signUpButton)
+  if (signUpButton) {
+    const response = await fetch("/api/signup", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      // body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace("/api/signup");
     } else {
       alert("Failed to sign up.");
     }
@@ -47,4 +48,4 @@ document
 
 document
   .querySelector(".signup-form")
-  .addEventListener("submit", signupFormHandler);
+  .addEventListener("signUPButton", signupButtonHandler);
