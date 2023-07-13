@@ -10,7 +10,11 @@ router.post("/", async (req, res) => {
       measurement: req.body.measurement,
       owner_id: req.body.owner_id,
       timestamp: new Date().toLocaleDateString(),
+     
     });
+    res.status(200).json(dbRecipe)
+    console.table(dbRecipe)
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
