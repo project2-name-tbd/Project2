@@ -14,9 +14,9 @@ Recipe.belongsTo(User, {
   foreignKey: "owner_id",
 });
 
-// recipeJoin.belongsTo(User, {
-//   foreignKey: "user_id",
-// });
+recipeJoin.belongsTo(Ingredient, {
+  foreignKey: "ingredient_id",
+});
 recipeJoin.belongsTo(Recipe, {
   foreignKey: "recipe_id",
 });
