@@ -14,18 +14,18 @@ Recipe.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'Recipe'
+      defaultValue: "Recipe",
     },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'Recipe description'
+      defaultValue: "Recipe description",
     },
     //   recipe-level setting that controls metric/us
     measurement: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+      allowNull: true,
+      defaultValue: true,
     },
     //   not sure how to do ingredient list... array of objects?
     // ingredient_id: {
