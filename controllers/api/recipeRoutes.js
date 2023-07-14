@@ -1,25 +1,26 @@
 const router = require("express").Router();
 const { Recipe, recipeJoin, User } = require("../../models");
 
-// put routes from front end when user creates their new recipe
+// post routes from front end when user creates their new recipe
 router.post("/", async (req, res) => {
   try {
     const dbRecipe = await Recipe.create({
       title: req.body.title,
       description: req.body.description,
-      measurement: req.body.measurement,
-      owner_id: req.body.owner_id,
+      ingredients: req.body.ingredients,
+      owner_id: req.session.owner_id,
       timestamp: new Date().toLocaleDateString(),
-     
     });
-    res.status(200).json(dbRecipe)
-    console.table(dbRecipe)
 
+    res.status(200).json(dbRecipe);
+    console.table(dbRecipe);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
+
+// get route for new-recipe.handlebars
 
 // Display the saved recipes
 // router.get("/", async (req, res) => {

@@ -1,20 +1,20 @@
-const e = require("express");
-const Ingredient = require("../../models/ingredient");
-
 const searchIngredient = document.getElementById("searchIngredient");
 const publish = document.getElementById("publish");
-const userProfile = document.getElementById("userProfile");
+// const userProfile = document.getElementById("userProfile");
 const discardRecipe = document.getElementById("discardRecipe");
+const addIngredient = document.getElementById("addIngredient");
+const recipeForm = document.getElementById("recipeForm");
 
 function ingredientAppend(event) {
+  event.stopPropagation();
   event.preventDefault();
   console.log("ingredient appended");
   const ingredient = searchIngredient.value;
-  const recipeList = document.getElementById("recipeList");
+  const ingredientList = document.getElementById("ingredientList");
   const ingredientItem = document.createElement("li");
   const deleteButton = document.createElement("button");
   ingredientItem.textContent = ingredient;
-  recipeList.appendChild(ingredientItem);
+  ingredientList.appendChild(ingredientItem);
   searchIngredient.value = "";
 
   deleteButton.textContent = "Delete";
@@ -32,16 +32,16 @@ function publishRecipe(event) {
   console.log("recipe published");
   const recipeName = document.getElementById("recipeName").value;
   const recipeDescription = document.getElementById("recipeDescription").value;
-  const recipeList = document.getElementById("recipeList").value;
+  const recipeList = document.getElementById("ingredientList").value;
   const recipe = {
-    name: recipeName,
+    title: recipeName,
     description: recipeDescription,
     ingredients: recipeList,
   };
   console.log("recipe list", recipe);
   fetch("/api/recipe", {
     method: "POST",
-    body: JSON.stringify(recipe),
+    body: JSON.stringify({ recipe }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -63,7 +63,7 @@ $(function () {
   $("#searchIngredient").autocomplete({
     source: function (request, response) {
       var term = request.term;
-      fetch(`/api/ingredient?name=${term}`)
+      fetch(`/api/ingredient/${encodeURIComponent(term.trim())}`)
         .then(function (responseFromAPI) {
           return responseFromAPI.json();
         })
@@ -108,7 +108,7 @@ function removeRecipe(event) {
 //     alert(response.statusText);
 //   }
 // };
-
-search.addEventListener("submit", ingredientAppend);
+recipeForm.addEventListener("submit", publishRecipe);
+addIngredient.addEventListener("click", ingredientAppend);
 publish.addEventListener("click", publishRecipe);
-userProfile.addEventListener("click", logout);
+// userProfile.addEventListener("click", logout);

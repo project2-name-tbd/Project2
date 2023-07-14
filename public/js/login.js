@@ -1,3 +1,4 @@
+// const submitButton = document.querySelector("#");
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -23,10 +24,9 @@ const loginFormHandler = async (event) => {
 const signupButtonHandler = async (event) => {
   event.preventDefault();
 
-  
-  const signUpButton = document.querySelector("#signup")
- 
-console.log(signUpButton)
+  const signUpButton = document.querySelector("#signup");
+
+  console.log(signUpButton);
   if (signUpButton) {
     const response = await fetch("/api/signup", {
       method: "POST",
@@ -42,10 +42,10 @@ console.log(signUpButton)
   }
 };
 
-document
-  .querySelector(".login-form")
-  .addEventListener("submit", loginFormHandler);
+// document
+//   .querySelector(".login-form")
+//   .addEventListener("submit", loginFormHandler);
 
-document
-  .querySelector(".signup-form")
-  .addEventListener("signUPButton", signupButtonHandler);
+// document
+//   .querySelector(".signup-form")
+//   .addEventListener("submit", signupButtonHandler);

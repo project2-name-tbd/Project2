@@ -22,30 +22,21 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-
-
-
 router.get("/", withAuth, async (req, res) => {
   try {
-    const userRecipes = await Recipe.findAll({
-      where: {
-        owner_id: req.session.User.id,
-      },
+    const recipeData = await Recipe.findAll({
+      where: { owner_id: req.session.user_id },
     });
-    console.log(userRecipes)
-    res.status(200).json(userRecipes)
-    res.render("homepage", {
-      userRecipes,
-    });
-   
+
+    const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
+
+    // res.status(200).json(recipes)
+    console.log(recipes, "is this working");
+    res.render("homepage", { recipes });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
-
 
 router.get("/new-recipe", (req, res) => {
   if (req.session.logged_in) {
@@ -54,6 +45,15 @@ router.get("/new-recipe", (req, res) => {
   }
 
   res.render("new-recipe");
+});
+
+router.get("/recipe", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("/recipe");
 });
 
 module.exports = router;
