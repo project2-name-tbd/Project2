@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../config/connection");
 
 class Recipe extends Model {}
@@ -28,14 +28,18 @@ Recipe.init(
       defaultValue: true,
     },
     //   not sure how to do ingredient list... array of objects?
-    // ingredient_id: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    //   references: {
-    //     model: 'ingredient',
-    //     key: 'id'
-    //   }
-    // },
+    ingredients: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    unitOfMeasure: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    quantity: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     owner_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

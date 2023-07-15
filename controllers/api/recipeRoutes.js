@@ -8,6 +8,8 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       ingredients: req.body.ingredients,
+      unitOfMeasure: req.body.unitOfMeasure,
+      quantity: req.body.quantity,
       owner_id: req.session.owner_id,
       timestamp: new Date().toLocaleDateString(),
     });
