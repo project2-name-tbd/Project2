@@ -39,12 +39,8 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/new-recipe", async (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/");
-    return;
-  }
-
-  res.render("new-recipe");
+  
+     res.render("new-recipe");
 });
 
 router.get("/recipe", async (req, res) => {

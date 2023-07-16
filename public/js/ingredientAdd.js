@@ -5,6 +5,10 @@ const discardRecipe = document.getElementById("discardRecipe");
 const addIngredient = document.getElementById("addIngredient");
 const recipeForm = document.getElementById("recipeForm");
 
+const ingredientArray = []
+const quantityArray = []
+const measurementArray = []
+
 function ingredientAppend(event) {
   event.stopPropagation();
   event.preventDefault();
@@ -13,9 +17,25 @@ function ingredientAppend(event) {
   const ingredientList = document.getElementById("ingredientList");
   const ingredientItem = document.createElement("li");
   const deleteButton = document.createElement("button");
-  ingredientItem.textContent = ingredient;
-  ingredientList.appendChild(ingredientItem);
+
+  const quantityEl = document.getElementById("ingredientQuantity");
+
+  const quantity = quantityEl.value
+
+  const measurementEl = document.getElementById('ingredientMeasurement')
+  const measurement = measurementEl.value
+
+
+  ingredientItem.textContent = quantity + " " + measurement + " " + ingredient;
+  ingredientList.appendChild(ingredientItem); 
   searchIngredient.value = "";
+
+  ingredientArray.push(ingredient)
+  quantityArray.push(quantity)
+  measurementArray.push(measurement)
+  
+
+  quantityEl.value = "";
 
   deleteButton.textContent = "Delete";
   ingredientItem.appendChild(deleteButton);
@@ -32,16 +52,26 @@ function publishRecipe(event) {
   console.log("recipe published");
   const recipeName = document.getElementById("recipeName").value;
   const recipeDescription = document.getElementById("recipeDescription").value;
-  const recipeList = document.getElementById("ingredientList").value;
+  const recipeList = document.getElementById("searchIngredient").value;
+  const ingredientQuantity = document.getElementById('ingredientQuantity').value
+  const measurement = document.getElementById('ingredientMeasurement').value
+  
+const ingredientString = ingredientArray.toLocaleString()
+const quantityString = quantityArray.toLocaleString()
+const measurementString = quantityArray.toLocaleString()
+
+  
   const recipe = {
     title: recipeName,
     description: recipeDescription,
-    ingredients: recipeList,
+    ingredients: ingredientArray,
+    unitOfMeasure: measurementArray,
+    quantity: quantityArray
   };
   console.log("recipe list", recipe);
   fetch("/api/recipe", {
     method: "POST",
-    body: JSON.stringify({ recipe }),
+    body: JSON.stringify({ recipeName, recipeDescription, ingredientString, measurementString, quantityString }),
     headers: {
       "Content-Type": "application/json",
     },

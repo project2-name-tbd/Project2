@@ -14,20 +14,20 @@
                     <div class="form-control mt-3 pb-3 bg-light">
 
                         <label for="recipe-ingredients" class="form-label">Ingredients</label>
-                        <input class="form-control mb-2" type="text" id="searchIngredient"><button class="btn btn btn-secondary" id="addIngredient">add ingredient</button>
+                        <input class="form-control mb-2" type="text" id="searchIngredient">
 
-                        {{!-- <label for="recipe-title" class="form-label">Title</label>
-                        <input class="form-control" type="text" id="recipe-title" /> --}}
+                        <label for="recipe-title" class="form-label">Quantity</label>
+                        <input class="form-control" type="text"  id="ingredientQuantity"/>
 
-                        {{!-- <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="ingredientMeasurement">
                             <option selected>Select a unit of measure</option>
-                            <option value="1">Teaspoon</option>
-                            <option value="2">Tablespoon</option>
-                            <option value="3">Ounce</option>
-                            <option value="4">Cup</option>
-                            <option value="5">Liter</option>
-                        </select> --}}
-
+                            <option value="Teaspoon">Teaspoon</option>
+                            <option value="Tablespoon">Tablespoon</option>
+                            <option value="Ounce">Ounce</option>
+                            <option value="Cup">Cup</option>
+                            <option value="Liter">Liter</option>
+                        </select>
+                    <button class="btn btn btn-secondary" id="addIngredient">add ingredient</button>
                     </div>
                 </div>
                 <div class="form-group">
