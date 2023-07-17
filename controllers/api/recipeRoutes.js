@@ -5,10 +5,12 @@ const { Recipe, recipeJoin, User } = require("../../models");
 router.post("/", async (req, res) => {
   try {
     const dbRecipe = await Recipe.create({
-      title: req.body.title,
-      description: req.body.description,
-      ingredients: req.body.ingredients,
-      owner_id: req.session.owner_id,
+      title: req.body.recipeName,
+      description: req.body.recipeDescription,
+      ingredients: req.body.ingredientString,
+      unitOfMeasure: req.body.measurementString,
+      quantity: req.body.quantityString,
+      owner_id: req.session.user_id,
       timestamp: new Date().toLocaleDateString(),
     });
 
