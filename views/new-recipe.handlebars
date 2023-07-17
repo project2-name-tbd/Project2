@@ -23,42 +23,48 @@
                             <div class="col">
                                 <input type="text" class="form-control" placeholder="Quantity">
                             </div>
-                            <button class="btn btn btn-secondary" id="addIngredient">Add Ingredient</button>
+                            <div>
+                            <button class="btn btn btn-secondary mt-3" id="addIngredient">Add Ingredient</button>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Ingredient Name</th>
-                                    <th scope="col">Unit of Measure</th>
-                                    <th scope="col">Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Butter</td>
-                                    <td>Tablespoon</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>Sugar</td>
-                                    <td>Cup</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>Chocolate Chips</td>
-                                    <td>Cup</td>
-                                    <td>1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="form-group">
-                        <button id="publish" class="btn btn btn-primary mt-3 mb-2" type="submit">Publish</button>
-                        <button class="btn btn btn-secondary mt-3 mb-2" type="submit">Save as Draft</button>
-                    </div>
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient Name</th>
+                                <th scope="col">Unit of Measure</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                                <td>Butter</td>
+                                <td>Tablespoon</td>
+                                <td>2</td>
+                                <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                            </tr>
+                            <tr class="align-middle">
+                                <td>Sugar</td>
+                                <td>Cup</td>
+                                <td>3</td>
+                                <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                            </tr>
+                            <tr class="align-middle">
+                                <td>Chocolate Chips</td>
+                                <td>Cup</td>
+                                <td>1</td>
+                                <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn btn-light mt-3 mb-2" type="submit">Save as Draft</button>
+                    <button id="publish" class="btn btn btn-primary mt-3 mb-2" type="submit">Publish</button>
+                </div>
             </form>
         </div>
         <div class="col-3"></div>
