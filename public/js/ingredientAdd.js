@@ -58,7 +58,7 @@ function publishRecipe(event) {
   
 const ingredientString = ingredientArray.toLocaleString()
 const quantityString = quantityArray.toLocaleString()
-const measurementString = quantityArray.toLocaleString()
+const measurementString = measurementArray.toLocaleString()
 
   
   const recipe = {
