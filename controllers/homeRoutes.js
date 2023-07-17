@@ -73,8 +73,8 @@ router.get("/recipe", async (req, res) => {
     res.status(500).json(err);
   }
 
-  
-  // res.render("/recipe", {recipeData});
+  res.render("recipe");
+
 });
 
 module.exports = router;
