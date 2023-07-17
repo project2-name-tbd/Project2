@@ -53,7 +53,7 @@ router.get("/recipe", (req, res) => {
     return;
   }
 
-  res.render("/recipe");
+  res.render("recipe");
 });
 
 module.exports = router;
