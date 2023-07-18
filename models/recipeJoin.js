@@ -31,6 +31,7 @@ recipeJoin.init(
     },
     unitOfMeasure: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     quantity: {
       type: DataTypes.STRING,

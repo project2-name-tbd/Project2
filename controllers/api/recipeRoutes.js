@@ -5,12 +5,13 @@ const { Recipe, recipeJoin, User, Ingredient } = require("../../models");
 router.post("/", async (req, res) => {
   try {
     const dbRecipe = await Recipe.create({
-      title: req.body.recipeName,
-      description: req.body.recipeDescription,
+      title: req.body.title,
+      description: req.body.description,
       owner_id: req.session.user_id,
       timestamp: new Date().toLocaleDateString(),      
     });
-    console.log(dbRecipe);
+    console.log(req.body.recipeName)
+    console.log(dbRecipe);  
 
     const {ingredients} = req.body;
     // for each ingredient 
@@ -20,7 +21,7 @@ router.post("/", async (req, res) => {
         where : {term: ingredients[i].term }
       })
     
-      console.log(ingredientFind)
+      console.log("ingredientFind:", ingredientFind)
        // set recipe id 
       const ingredientDetails = {
         recipe_id: dbRecipe.id, 
