@@ -14,12 +14,10 @@ Recipe.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Recipe",
     },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Recipe description",
     },
     //   recipe-level setting that controls metric/us
     // measurement: {

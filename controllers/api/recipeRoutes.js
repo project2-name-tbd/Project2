@@ -8,37 +8,35 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       owner_id: req.session.user_id,
-      timestamp: new Date().toLocaleDateString(),      
+      timestamp: new Date().toLocaleDateString(),
     });
-    console.log(req.body.recipeName)
-    console.log(dbRecipe);  
+    console.log(req.body.recipeName);
+    console.log(dbRecipe);
 
-    const {ingredients} = req.body;
-    // for each ingredient 
-    for (let i=0; i < ingredients.length; i++) {
+    const { ingredients } = req.body;
+    // for each ingredient
+    for (let i = 0; i < ingredients.length; i++) {
       // lookup ingredient from ingredient table
       const [ingredientFind] = await Ingredient.findOrCreate({
-        where : {term: ingredients[i].term }
-      })
-    
-      console.log("ingredientFind:", ingredientFind)
-       // set recipe id 
+        where: { term: ingredients[i].term },
+      });
+
+      console.log("ingredientFind:", ingredientFind);
+      // set recipe id
       const ingredientDetails = {
-        recipe_id: dbRecipe.id, 
+        recipe_id: dbRecipe.id,
         ingredient_id: ingredientFind.id,
-        unitOfMeasure: ingredients[i].unitOfMeasure, 
+        unitOfMeasure: ingredients[i].unitOfMeasure,
         quantity: ingredients[i].quantity,
-      }
-      console.log("ingredientdetails", ingredientDetails)
-       await recipeJoin.create(ingredientDetails)
-      
+      };
+      console.log("ingredientdetails", ingredientDetails);
+      await recipeJoin.create(ingredientDetails);
     }
-    
-    
-    console.log(ingredients)
+
+    console.log(ingredients);
     res.status(200).json(dbRecipe);
     console.table(dbRecipe);
-    console.table(ingredients)
+    console.table(ingredients);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -50,31 +48,35 @@ router.post("/", async (req, res) => {
 // Display the saved recipes
 router.get("/", async (req, res) => {
   try {
-    const dbRecipes = await Recipe.findAll({
-      where: {owner_id: req.session.user_id},
-     
+    const dbRecipes = await Recipe.findOne({
+      where: { owner_id: 6},
+      order: [ [ 'timestamp', 'DESC' ]],
       include: [
+      //   {
+      //     model: Recipe,
+      //     through: recipeJoin,
+      //     as: "recipes",
+      //   },
         {
-        model: recipeJoin,
-        attributes: ["recipe_id", "ingredient_id", "unitOfMeasure", "quantity"],
-      },
-      {
-        model: Ingredient, 
-        attributes: "term",
-      }
+          model: Ingredient,
+          through: recipeJoin,
+          as: "ingredients",
+        },
       ],
-      }
-    );
+    });
 
-    const recipes = dbRecipes.map((recipe) => recipe.get({ plain: true }));
-    console.log(recipes)
+    console.log(dbRecipes);
+    // map((recipe) => recipe.
 
-    res.render('recipe', { recipes })
+    const recipes = dbRecipes.get({ plain: true });
+    console.log(recipes);
 
-    console.log(err);
-    res.status(500).json(err);
-  }
-   catch (err) {
+    res.status(200).json(dbRecipes);
+
+    res.render("recipe", { recipes });
+    
+
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
