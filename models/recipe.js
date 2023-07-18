@@ -22,24 +22,24 @@ Recipe.init(
       defaultValue: "Recipe description",
     },
     //   recipe-level setting that controls metric/us
-    measurement: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: true,
-    },
+    // measurement: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: true,
+    //   defaultValue: true,
+    // },
     //   not sure how to do ingredient list... array of objects?
-    ingredients: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    unitOfMeasure: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    quantity: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    // ingredients: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // unitOfMeasure: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // quantity: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
     owner_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

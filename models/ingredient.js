@@ -6,17 +6,18 @@ class Ingredient extends Model {}
 Ingredient.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     ingredientId: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     searchValue: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     term: {
       type: DataTypes.STRING,
@@ -24,7 +25,7 @@ Ingredient.init(
     },
     useCount: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

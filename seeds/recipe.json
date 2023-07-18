@@ -3,10 +3,6 @@
     "id": 1,
     "title": "Chocolate Chip Cookies",
     "description": "step one",
-    "measurement": true,
-    "ingredients": "butter, chocolate chip, flour",
-    "unitOfMeasure": "tbsp, cup, cup",
-    "quantity": "2, 1, 3",
     "owner_id": 2,
     "timestamp": "07/13/2023"
   },
@@ -14,10 +10,6 @@
     "id": 2,
     "title": "PB&J",
     "description": "slap Pb on PB",
-    "measurement": true,
-    "ingredients": "bread, peanut butter",
-    "unitOfMeasure": "slice, tbsp",
-    "quantity": "2, 3",
     "owner_id": 5,
     "timestamp": "07/13/2023"
   }

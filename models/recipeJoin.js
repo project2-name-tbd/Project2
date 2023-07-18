@@ -13,6 +13,7 @@ recipeJoin.init(
     },
     recipe_id: {
       type: DataTypes.INTEGER,
+      allowNull:false,
       references: {
         model: "recipe",
         key: "id",
@@ -20,7 +21,8 @@ recipeJoin.init(
       },
     },
     ingredient_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      allowNull:false,
       references: {
         model: "ingredient",
         key: "id",
@@ -31,7 +33,7 @@ recipeJoin.init(
       type: DataTypes.STRING,
     },
     quantity: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
   },
   {

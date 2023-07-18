@@ -14,12 +14,23 @@ Recipe.belongsTo(User, {
   foreignKey: "owner_id",
 });
 
-recipeJoin.belongsTo(Ingredient, {
-  foreignKey: "ingredient_id",
+Recipe.belongsToMany(Ingredient, {
+  through: {
+    model: recipeJoin, unique: false
+  }, 
+  as: "ingredients"
 });
-recipeJoin.belongsTo(Recipe, {
-  foreignKey: "recipe_id",
-});
+
+Ingredient.belongsToMany(Recipe, {
+  through: {
+    model: recipeJoin, unique: false
+  }, 
+  as: "recipes"
+})
+
+// recipeJoin.belongsTo(Recipe, {
+//   foreignKey: "recipe_id",
+// });
 
 
 module.exports = { User, Recipe, recipeJoin, Ingredient };

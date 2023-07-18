@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Recipe, recipeJoin, User } = require("../../models");
+const { Recipe, recipeJoin, User, Ingredient } = require("../../models");
 
 // post routes from front end when user creates their new recipe
 router.post("/", async (req, res) => {
@@ -7,15 +7,37 @@ router.post("/", async (req, res) => {
     const dbRecipe = await Recipe.create({
       title: req.body.recipeName,
       description: req.body.recipeDescription,
-      ingredients: req.body.ingredientString,
-      unitOfMeasure: req.body.measurementString,
-      quantity: req.body.quantityString,
       owner_id: req.session.user_id,
-      timestamp: new Date().toLocaleDateString(),
+      timestamp: new Date().toLocaleDateString(),      
     });
+    console.log(dbRecipe);
 
+    const {ingredients} = req.body;
+    // for each ingredient 
+    for (let i=0; i < ingredients.length; i++) {
+      // lookup ingredient from ingredient table
+      const [ingredientFind] = await Ingredient.findOrCreate({
+        where : {term: ingredients[i].term }
+      })
+    
+      console.log(ingredientFind)
+       // set recipe id 
+      const ingredientDetails = {
+        recipe_id: dbRecipe.id, 
+        ingredient_id: ingredientFind.id,
+        unitOfMeasure: ingredients[i].unitOfMeasure, 
+        quantity: ingredients[i].quantity,
+      }
+      console.log("ingredientdetails", ingredientDetails)
+       await recipeJoin.create(ingredientDetails)
+      
+    }
+    
+    
+    console.log(ingredients)
     res.status(200).json(dbRecipe);
     console.table(dbRecipe);
+    console.table(ingredients)
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -25,29 +47,37 @@ router.post("/", async (req, res) => {
 // get route for new-recipe.handlebars
 
 // Display the saved recipes
-// router.get("/", async (req, res) => {
-//   try {
-//     const dbRecipes = await Recipe.findAll({
-//       include: [
-//         {
-//           model: Recipe,
-//           attributes: [
-//               "id",
-//               "title",
-//               "description",
-//               "measurement",
-//               "owner_id"
-//             ],
-//         },
-//       ],
-//     });
-//     const allRecipes = dbRecipes.get({ plain: true });
-//     res.render("recipe", { allRecipes });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/", async (req, res) => {
+  try {
+    const dbRecipes = await Recipe.findAll({
+      where: {owner_id: req.session.user_id},
+     
+      include: [
+        {
+        model: recipeJoin,
+        attributes: ["recipe_id", "ingredient_id", "unitOfMeasure", "quantity"],
+      },
+      {
+        model: Ingredient, 
+        attributes: "term",
+      }
+      ],
+      }
+    );
+
+    const recipes = dbRecipes.map((recipe) => recipe.get({ plain: true }));
+    console.log(recipes)
+
+    res.render('recipe', { recipes })
+
+    console.log(err);
+    res.status(500).json(err);
+  }
+   catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // router.get("/:id", async (req, res) => {
 //   try {
