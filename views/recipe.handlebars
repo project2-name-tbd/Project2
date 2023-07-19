@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h1 class="recipeTitle">Chocolate Chip Cookies</h1>
+      <h1 class="recipeTitle">{{recipe.title}}</h1>
       {{!-- <h1 class="recipeTitle">{{recipe.title}}</h1>
       <p class="recipeDescription">{{recipe.description}}</p> --}}
     </div>
@@ -12,43 +12,31 @@
 
   <div class="row">
     <div class="col-6">
+      
       <p class="recipeDescription">
-        Everyone needs a classic chocolate chip cookie recipe in their repertoire, and this
-        is mine. It is seriously the Best Chocolate Chip Cookie Recipe Ever! I have been making these for many, many
-        years and everyone who tries them agrees they’re out-of-this-world delicious!
-
-        Plus, there’s no funny ingredients, no chilling, etc. Just a simple, straightforward, amazingly delicious,
-        doughy yet still fully cooked, chocolate chip cookie that turns out perfectly every single time!
-
-        These are everything a chocolate chip cookie should be. Crispy and chewy. Doughy yet fully baked. Perfectly
-        buttery and sweet.
+        {{recipes.description}}
       </p>
     </div>
     <div class="col-6">
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Ingredient Name</th>
+            <th scope="col">Ingredient</th>
             <th scope="col">Unit of Measure</th>
             <th scope="col">Quantity</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Butter</td>
-            <td>Tablespoon</td>
-            <td>2</td>
+            {{#each recipes.ingredients as |ingredients|}}
+            <td>{{term}}</td>
+            <td>{{unitOfMeasure}}</td>
+            <td>{{quantity}}</td>
+            {{/each}}
           </tr>
-          <tr>
-            <td>Sugar</td>
-            <td>Cup</td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>Chocolate Chips</td>
-            <td>Cup</td>
-            <td>1</td>
-          </tr>
+         
+          
+          
         </tbody>
       </table>
     </div>

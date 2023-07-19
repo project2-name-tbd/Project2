@@ -14,6 +14,10 @@ Recipe.belongsTo(User, {
   foreignKey: "owner_id",
 });
 
+Recipe.hasMany(recipeJoin, {
+  foreignKey: "recipe_id",
+});
+
 Recipe.belongsToMany(Ingredient, {
   through: {
     model: recipeJoin, unique: false
@@ -28,9 +32,7 @@ Ingredient.belongsToMany(Recipe, {
   as: "recipes"
 })
 
-// recipeJoin.belongsTo(Recipe, {
-//   foreignKey: "recipe_id",
-// });
+
 
 
 module.exports = { User, Recipe, recipeJoin, Ingredient };

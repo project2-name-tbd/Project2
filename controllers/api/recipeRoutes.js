@@ -48,39 +48,44 @@ router.post("/", async (req, res) => {
 // Display the saved recipes
 router.get("/", async (req, res) => {
   try {
-    const dbRecipes = await Recipe.findOne({
-      where: { owner_id: 6},
-      order: [ [ 'timestamp', 'DESC' ]],
-      include: [
-      //   {
-      //     model: Recipe,
-      //     through: recipeJoin,
-      //     as: "recipes",
-      //   },
+
+    const newRecipe = await Recipe.findOne({
+      where: { owner_id: req.session.user_id},
+      order: [["timestamp", "DESC"]],
+      include: [ 
+        { model: recipeJoin,
+          through: Ingredient, 
+          as: "recipe_details",
+          attributes: ['recipe_id', 'ingredient_id', 'unitOfMeasure', 'quantity', ],
+         }, 
         {
           model: Ingredient,
           through: recipeJoin,
           as: "ingredients",
+          attributes: ['id', 'term'],
         },
-      ],
+      ]
     });
+  
 
-    console.log(dbRecipes);
-    // map((recipe) => recipe.
+   
+    const recipes = newRecipe.get({ plain: true });
+    // console.log(recipes);
 
-    const recipes = dbRecipes.get({ plain: true });
+  
+    // res.status(200).json(recipes);
     console.log(recipes);
+    res.render('recipe', {recipes})
 
-    res.status(200).json(dbRecipes);
-
-    res.render("recipe", { recipes });
-    
-
-  } catch (err) {
+  }  catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
-});
+})
+
+    
+
+    // res.render("recipe", { recipe, logged_in: true });
 
 // router.get("/:id", async (req, res) => {
 //   try {
