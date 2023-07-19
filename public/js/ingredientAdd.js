@@ -7,7 +7,7 @@ const addIngredient = document.getElementById("addIngredient");
 const recipeForm = document.getElementById("recipeForm");
 
 let ingredientArray = []
-// const quantityArray = []
+// const quantityArray = [] 
 // const measurementArray = []
 
 function ingredientAppend(event) {
@@ -106,7 +106,7 @@ function publishRecipe(event) {
       if (response.ok) {
         console.log("Recipe created!");
         //todo: redirect to recipe page
-        
+        window.location.replace("/api/recipe")
       } else {
         alert("Failed to create recipe");
       }
