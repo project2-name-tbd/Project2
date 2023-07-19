@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
   try {
 
     const newRecipe = await Recipe.findOne({
-      where: { owner_id: 6 },
+      where: { owner_id: req.session.user_id},
       order: [["timestamp", "DESC"]],
       include: [ 
         { model: recipeJoin,
