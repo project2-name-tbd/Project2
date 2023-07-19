@@ -50,12 +50,10 @@ router.get("/", async (req, res) => {
   try {
 
     const newRecipe = await Recipe.findOne({
-      where: { owner_id: req.session.user_id},
+      where: { owner_id: 6 },
       order: [["timestamp", "DESC"]],
       include: [ 
         { model: recipeJoin,
-          through: Ingredient, 
-          as: "recipe_details",
           attributes: ['recipe_id', 'ingredient_id', 'unitOfMeasure', 'quantity', ],
          }, 
         {
@@ -71,11 +69,21 @@ router.get("/", async (req, res) => {
    
     const recipes = newRecipe.get({ plain: true });
     // console.log(recipes);
+    
+    const recipeDetails = recipes.recipeJoins;
 
-  
+    var jsonObj = {};
+    for(let i=0; i < recipes.recipeJoins.length; i++){
+      jsonObj[i] = recipes.recipeJoins[i];
+    }
+    
+    console.log(jsonObj);
+    console.log(jsonObj[0].unitOfMeasure);
     // res.status(200).json(recipes);
     console.log(recipes);
-    res.render('recipe', {recipes})
+    console.log(recipes.recipeJoins.length);
+    
+    res.render('recipe', {recipes, jsonObj, logged_in: true})
 
   }  catch (err) {
     console.log(err);
@@ -87,23 +95,27 @@ router.get("/", async (req, res) => {
 
     // res.render("recipe", { recipe, logged_in: true });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const dbSavedRecipes = await Recipe.findByPk(req.params.id, {
-//       include: [{ model: recipeJoin }, { model: User }],
-//     });
+router.get("/:id", async (req, res) => {
+  try {
+    const dbSavedRecipes = await Recipe.findByPk(req.params.id, {
+      where: {owner_id: req.session.user_id},
+      include: [{ model: recipeJoin }, {model: Ingredient,  through: recipeJoin,
+        as: "ingredients",}, { model: User }],
+    });
 
-//     if (!dbSavedRecipes) {
-//       console.log("No recipes to display");
-//       return;
-//     }
 
-//     const savedRecipes = dbRecipes.get({ plain: true });
-//     res.render("recipe", { savedRecipes });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+    if (!dbSavedRecipes) {
+      console.log("No recipes to display");
+      return;
+    }
+
+    const recipes = dbSavedRecipes.get({ plain: true });
+    console.log("getting recipe by ID", recipes)
+    res.render("recipe", { recipes, logged_in: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

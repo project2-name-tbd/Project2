@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <h1 class="recipeTitle">{{recipe.title}}</h1>
+      <h1 class="recipeTitle">{{recipes.title}}</h1>
       {{!-- <h1 class="recipeTitle">{{recipe.title}}</h1>
       <p class="recipeDescription">{{recipe.description}}</p> --}}
     </div>
@@ -22,17 +22,22 @@
         <thead>
           <tr>
             <th scope="col">Ingredient</th>
-            <th scope="col">Unit of Measure</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Unit of Measure</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             {{#each recipes.ingredients as |ingredients|}}
             <td>{{term}}</td>
-            <td>{{unitOfMeasure}}</td>
-            <td>{{quantity}}</td>
+            
+            {{#each jsonObj}}
+            <td>{{this.0.quantity}}</td>
+            <td>{{this.0.unitOfMeasure}}</td>
             {{/each}}
+            {{/each}}
+            
+            
           </tr>
          
           
