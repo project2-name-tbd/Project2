@@ -30,6 +30,19 @@ router.get("/", withAuth, async (req, res) => {
 
     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
 
+    console.log(recipes.length);
+    console.log(recipes[0].id);
+
+    for(let i = 0; i < recipes.length; i++) {
+      const allIngredients = await recipeJoin.findAll({
+        where: {recipe_id: recipes[i].id}
+      })
+      console.log(recipes[i].id);
+      console.log(allIngredients);
+    }
+
+    
+
     // res.status(200).json(recipes)
     console.log(recipes, "is this working");
     res.render("homepage", { recipes, logged_in: true });
@@ -44,34 +57,17 @@ router.get("/new-recipe", withAuth, async (req, res) => {
      res.render("new-recipe", {logged_in: true});
 });
 
-router.get("/recipe", async (req, res) => {
+router.get("/recipe", withAuth, async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
-
-  // When adding new ingredient, quantity, and unit, can just concatenate with , + word. Need comma to delimit into array
-
-  console.log("here");
+  
   try {
-    const recipeData = await Recipe.findByPk(req.params.id, {
-      // include: [{ model: Recipe, through: recipeJoin, as: 'userRecipes' }]
+    const recipeData = await Recipe.findAll({
+      where: { owner_id: req.session.user_id },
     });
-    // console.log(recipeData[0].ingredients);
-    // for (var i = 0; i < recipeData.length; i++) {
-    //   const ingredientsArray = recipeData[i].ingredients.split(",");
-    //   const unitsArray = recipeData[i].unitOfMeasure.split(",");
-    //   const quantityArray = recipeData[i].quantity.split(",");
 
-    //   console.log(ingredientsArray);
-    //   console.log(unitsArray);
-    //   console.log(quantityArray);
-
-    //   for (var j = 0; j < ingredientsArray.length; j++) {
-    //     console.log(` PRINTING OUT EACH INGREDIENT ITEM: ${quantityArray[i]} ${unitsArray[i]} ${ingredientsArray[i]}`);
-    //   }
-    // }
-    
     res.status(200).send(recipeData);
   } 
   catch (err) {
