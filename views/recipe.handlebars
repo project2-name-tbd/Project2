@@ -27,23 +27,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {{#each recipes.ingredients as |ingredients|}}
+          
+            {{#each recipes.ingredients}}
+            <tr>
             <td>{{term}}</td>
-            
-            {{#each jsonObj}}
-            <td>{{this.0.quantity}}</td>
-            <td>{{this.0.unitOfMeasure}}</td>
+            </tr>
             {{/each}}
-            {{/each}}
-            
-            
-          </tr>
-         
-          
-          
+
+            {{#each recipes.recipeJoins}}
+                <tr>
+                  <td>{{quantity}}</td>
+                  <td>{{unitOfMeasure}}</td>
+                </tr>
+              {{/each}}
         </tbody>
-      </table>
     </div>
 
   </div>
