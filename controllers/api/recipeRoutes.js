@@ -65,25 +65,10 @@ router.get("/", async (req, res) => {
       ]
     });
   
-
-   
     const recipes = newRecipe.get({ plain: true });
     // console.log(recipes);
     
-    const recipeDetails = recipes.recipeJoins;
-
-    var jsonObj = {};
-    for(let i=0; i < recipes.recipeJoins.length; i++){
-      jsonObj[i] = recipes.recipeJoins[i];
-    }
-    
-    console.log(jsonObj);
-    console.log(jsonObj[0].unitOfMeasure);
-    // res.status(200).json(recipes);
-    console.log(recipes);
-    console.log(recipes.recipeJoins.length);
-    
-    res.render('recipe', {recipes, jsonObj, logged_in: true})
+    res.render('recipe', {recipes, logged_in: true})
 
   }  catch (err) {
     console.log(err);
@@ -115,7 +100,9 @@ router.get("/:id", async (req, res) => {
 
     const recipes = dbSavedRecipes.get({ plain: true });
     console.log("getting recipe by ID", recipes)
-    res.render("recipe", { recipes, logged_in: true });
+    
+    res.render('recipe', {recipes, logged_in: true})
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
