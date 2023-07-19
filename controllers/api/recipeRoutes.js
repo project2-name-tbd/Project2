@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       owner_id: req.session.user_id,
-      timestamp: new Date().toLocaleDateString(),
+      timestamp: new Date().toLocaleString(),
     });
     console.log(req.body.recipeName);
     console.log(dbRecipe);
@@ -50,7 +50,7 @@ router.get("/", async (req, res) => {
   try {
 
     const newRecipe = await Recipe.findOne({
-      where: { owner_id: 6 },
+      where: { owner_id: req.session.user_id },
       order: [["timestamp", "DESC"]],
       include: [ 
         { model: recipeJoin,
@@ -99,15 +99,19 @@ router.get("/:id", async (req, res) => {
   try {
     const dbSavedRecipes = await Recipe.findByPk(req.params.id, {
       where: {owner_id: req.session.user_id},
-      include: [{ model: recipeJoin }, {model: Ingredient,  through: recipeJoin,
-        as: "ingredients",}, { model: User }],
+      include: [ 
+        { model: recipeJoin,
+          attributes: ['recipe_id', 'ingredient_id', 'unitOfMeasure', 'quantity', ],
+         }, 
+        {
+          model: Ingredient,
+          through: recipeJoin,
+          as: "ingredients",
+          attributes: ['id', 'term'],
+        },
+      ] 
     });
 
-
-    if (!dbSavedRecipes) {
-      console.log("No recipes to display");
-      return;
-    }
 
     const recipes = dbSavedRecipes.get({ plain: true });
     console.log("getting recipe by ID", recipes)
