@@ -1,9 +1,10 @@
 {{#each recipes as |recipe|}}
-  <div class="row align-center mb-5">
-    <div class="col-md-6">
+  <div class="row justify-content-center mb-5">
+    <div class="col-8 bg-light p-4 pb-2">
       <a href="/api/recipe/{{recipe.id}}">
       <h2> {{recipe.title}}</h2>
       </a>
+      <p>{{recipe.description}}</p>
     </div>
 
     {{!-- <div class="col-md-6">
