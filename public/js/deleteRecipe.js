@@ -1,13 +1,11 @@
-
-
+let recipeDelete = document.querySelectorAll(".deleteRecipeButton");
 
 function deleteRecipe(event) {
-  
-    event.preventDefault();
-  console.log("deleting recipe...");
- 
-  const recipeId = document.getElementById("recipe.id");
-  console.log(recipeId);
+  event.preventDefault();
+  // console.log("deleting recipe...");
+  console.log(recipeDelete);
+  const recipeId = event.target.attributes['id'].value;
+  console.log("RECIPE ID " + recipeId);
 
   fetch(`/api/recipe/${recipeId}`, {
     method: "DELETE",
@@ -16,9 +14,9 @@ function deleteRecipe(event) {
       console.log(response);
       if (response.ok) {
         console.log("recipe DELETED!");
-        // window.location.replace("/");
+        window.location.replace("/");
       } else {
-        alert("Failed to create recipe");
+        alert("Failed to delete recipe");
       }
     })
     .catch((err) => {
@@ -26,6 +24,6 @@ function deleteRecipe(event) {
     });
 };
 
-const recipeDeleteButton = document.querySelector(".deleteButton");
-
-recipeDeleteButton.addEventListener('click', deleteRecipe);
+for(let i=0; i<recipeDelete.length; i++){
+  recipeDelete[i].addEventListener('click', deleteRecipe);
+};

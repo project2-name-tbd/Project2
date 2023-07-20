@@ -118,10 +118,10 @@ router.delete('/:id', async (req, res) => {
     const recipeData = await Recipe.destroy({
       where: {
         id: req.params.id,
-        owner_id: 6,
+        owner_id: req.session.user_id,
       },
     });
-    console.log(recipeData)
+    console.log("DELETING" + recipeData)
 
     if (!recipeData) {
       res.status(404).json({ message: 'No recipe found with this id!' });

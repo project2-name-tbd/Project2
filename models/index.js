@@ -16,6 +16,7 @@ Recipe.belongsTo(User, {
 
 Recipe.hasMany(recipeJoin, {
   foreignKey: "recipe_id",
+  onDelete: 'CASCADE'
 });
 
 Recipe.belongsToMany(Ingredient, {
