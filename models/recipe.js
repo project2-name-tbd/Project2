@@ -16,8 +16,9 @@ Recipe.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT('long'),
       allowNull: false,
+  
     },
     //   recipe-level setting that controls metric/us
     // measurement: {
