@@ -50,27 +50,11 @@ router.get("/recipe", async (req, res) => {
     return;
   }
 
-  // When adding new ingredient, quantity, and unit, can just concatenate with , + word. Need comma to delimit into array
-
   console.log("here");
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
-      // include: [{ model: Recipe, through: recipeJoin, as: 'userRecipes' }]
+      include: [{ model: Recipe, through: recipeJoin, as: 'userRecipes' }]
     });
-    // console.log(recipeData[0].ingredients);
-    // for (var i = 0; i < recipeData.length; i++) {
-    //   const ingredientsArray = recipeData[i].ingredients.split(",");
-    //   const unitsArray = recipeData[i].unitOfMeasure.split(",");
-    //   const quantityArray = recipeData[i].quantity.split(",");
-
-    //   console.log(ingredientsArray);
-    //   console.log(unitsArray);
-    //   console.log(quantityArray);
-
-    //   for (var j = 0; j < ingredientsArray.length; j++) {
-    //     console.log(` PRINTING OUT EACH INGREDIENT ITEM: ${quantityArray[i]} ${unitsArray[i]} ${ingredientsArray[i]}`);
-    //   }
-    // }
     
     res.status(200).send(recipeData);
   } 

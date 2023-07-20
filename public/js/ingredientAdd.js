@@ -129,10 +129,11 @@ $(function () {
           for (let i = 0; i < dataFromAPI.length; i++) {
             var element = dataFromAPI[i];
             newIngredientArray.push({
-              label: element.name,
-              value: element.name,
+              label: element.term,
+              value: element.term,
             });
           }
+          console.log(newIngredientArray);
           response(newIngredientArray);
         });
     },
