@@ -2,8 +2,7 @@ const router = require("express").Router();
 const { User, Recipe, recipeJoin } = require("../models");
 const withAuth = require("../utils/auth");
 
-// get request, after client loggs in, presented with list of their saved recipes (on right side of page?)
-
+// render the signup page
 router.get("/signup", async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
@@ -13,6 +12,7 @@ router.get("/signup", async (req, res) => {
   res.render("signup");
 });
 
+// render the login page
 router.get("/login", async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
@@ -22,6 +22,7 @@ router.get("/login", async (req, res) => {
   res.render("login");
 });
 
+// get all recipes this user has created, and render on homepage
 router.get("/", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findAll({
@@ -39,16 +40,22 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
+// get new-recipe form
 router.get("/new-recipe", withAuth, async (req, res) => {
   
      res.render("new-recipe", {logged_in: true});
 });
 
+// 
 router.get("/recipe", async (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
+
+  app.get("/public", (req, res) => {
+    res.render("assets");
+});
 
   console.log("here");
   try {
