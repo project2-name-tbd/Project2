@@ -50,6 +50,10 @@ router.get("/recipe", async (req, res) => {
     return;
   }
 
+  app.get("/public", (req, res) => {
+    res.render("assets");
+});
+
   console.log("here");
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
