@@ -29,20 +29,10 @@
             {{#each recipe.ingredients as |ingredient| }}
             <tr>
             <td>{{ingredient.term}}</td>
-            {{!-- </tr> --}}
-            {{!-- {{/each}} --}}
-
-            {{!-- {{#each recipes.recipeJoins}} --}}
-              {{!-- <tr> --}}
-                <td>{{ingredient.quantity}}</td>
-                {{!-- <td>{{unitOfMeasure}}</td> --}}
-              {{!-- </tr> --}}
-            {{!-- {{/each}} --}}
-
-            {{!-- {{#each recipes.recipeJoins}} --}}
-              {{!-- <tr> --}}
-                {{!-- <td>{{quantity}}</td> --}}
-                <td>{{ingredient.unitOfMeasure}}</td>
+        
+            <td>{{ingredient.quantity}}</td>
+           
+            <td>{{ingredient.unitOfMeasure}}</td>
             </tr>  
             {{/each}}
             

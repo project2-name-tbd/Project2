@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Recipe, recipeJoin, User, Ingredient } = require("../../models");
 const {Op} = require("sequelize");
 
+// send ingredient that starts with the letter user has typed in
 router.get("/:term", async (req, res) => {
   console.log("YOU MADE IT");
   try {
