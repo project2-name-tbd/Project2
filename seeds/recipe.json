@@ -3,14 +3,14 @@
     "id": 1,
     "title": "Chocolate Chip Cookies",
     "description": "step one",
-    "measurement": true,
-    "owner_id": null
+    "owner_id": 2,
+    "timestamp": "07/13/2023"
   },
   {
     "id": 2,
     "title": "PB&J",
     "description": "slap Pb on PB",
-    "measurement": true,
-    "owner_id": null
+    "owner_id": 5,
+    "timestamp": "07/13/2023"
   }
 ]

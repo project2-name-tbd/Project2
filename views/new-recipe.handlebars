@@ -1,50 +1,63 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-6">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8 col-xxl-8 row">
             <h2>Add Recipe</h2>
 
-            <form class="form recipe-form form-control">
+            <form id="recipeForm" class="form recipe-form form-control">
                 <div class="form-group">
                     <div class="form-group">
                         <label for="recipe-title" class="form-label">Title</label>
-                        <input class="form-control" type="text" id="recipe-title" />
+                        <input class="form-control" type="text" id="recipeName" />
                     </div>
                     <label for="recipe-description" class="form-label">Description</label>
-                    <textarea class="form-control" type="text" id="recipe-description" /></textarea>
+                    <textarea class="form-control" type="text" id="recipeDescription"></textarea>
                     <div class="form-control mt-3 pb-3 bg-light">
 
                         <label for="recipe-ingredients" class="form-label">Ingredients</label>
-                        <input id="search" class="form-control mb-2" type="text" id="recipe-search">
+                        <input class="form-control mb-2" type="text" id="searchIngredient">
 
-                        <label for="recipe-title" class="form-label">Title</label>
-                        <input class="form-control" type="text" id="recipe-title" />
-
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select a unit of measure</option>
-                            <option value="1">Teaspoon</option>
-                            <option value="2">Tablespoon</option>
-                            <option value="3">Ounce</option>
-                            <option value="4">Cup</option>
-                            <option value="5">Liter</option>
-                        </select>
+                        <div class="row">
+                            <div class="col">
+                                <input type="select" class="form-control" id="ingredientMeasurement" placeholder="Unit of Measure">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="ingredientQuantity" placeholder="Quantity">
+                            </div>
+                            <div>
+                            <button class="btn btn btn-secondary mt-3" id="addIngredient">Add Ingredient</button>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
+                <div>
+                    <table id="ingredientList" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingredient</th>
+                                <th scope="col">Unit</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><button class="btn btn-sm btn-danger">Remove</button></td>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="form-group">
-                    <button class="btn btn btn-primary mt-3 mb-2" type="submit">Publish</button>
-                    <button class="btn btn btn-secondary mt-3 mb-2" type="submit">Save as Draft</button>
+                    <button class="btn btn btn-light mt-3 mb-2" type="submit">Save as Draft</button>
+                    <button id="publish" class="btn btn btn-primary mt-3 mb-2" type="submit">Publish</button>
                 </div>
             </form>
-            <div>
-                <ul id ="recipe-list">
-
-                </ul>
-            </div>
         </div>
     </div>
 </div>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="/js/login.js"></script>
-<script>src="/js/ingredientAdd.js"</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/js/ingredientAdd.js"></script>

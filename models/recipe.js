@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, Sequelize } = require("sequelize");
 const sequelize = require("../config/connection");
 
 class Recipe extends Model {}
@@ -7,7 +7,7 @@ Recipe.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -20,22 +20,27 @@ Recipe.init(
       allowNull: false,
     },
     //   recipe-level setting that controls metric/us
-    measurement: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+    // measurement: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: true,
+    //   defaultValue: true,
+    // },
     //   not sure how to do ingredient list... array of objects?
     // ingredients: {
     //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   references: {
-    //     model: 'ingredient',
-    //     key: 'id'
-    //   }
+    //   allowNull: true,
+    // },
+    // unitOfMeasure: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
+    // quantity: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
     // },
     owner_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       onDelete: "CASCADE",
       references: {
         model: "user",

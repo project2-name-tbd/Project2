@@ -1014,10 +1014,12 @@ a:hover {
 .btn.btn-primary {
   background-color: #2d3e50;
   color: #d9e9e8;
+  border: none;
 }
 
 .btn.btn-primary:hover {
   background-color: #57779a;
+  border: none;
 }
 
 .btn.btn-danger {
@@ -1041,10 +1043,12 @@ a:hover {
 .btn.btn-light {
   background-color: #d9e9e8;
   color: #1a1a1a;
+  border: none;
 }
 
 .btn.btn-light:hover {
   background-color: #84b8b4;
+  border: none
 }
 
 .btn.btn-dark {
