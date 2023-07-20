@@ -1,3 +1,21 @@
 a.btn:hover {
     text-decoration: none;
 }
+
+a {
+    text-decoration: none;
+    color:#1c66b5;
+}
+
+a:hover {
+    text-decoration: underline;
+    color:#2d3e50;
+}
+
+p {
+    color: #2d3e50;
+}
+
+.bg-light {
+    background-color: #a1c4e9;
+}

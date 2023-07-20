@@ -7,8 +7,10 @@
   <title>RecipeDB</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -16,13 +18,13 @@
     <a href="/"><img src="/assets/recipeDB-logo-02.png" class="m-3" width="50px"></a>
     {{#if logged_in}}
     <nav class="mr-4">
-      <a href="../new-recipe" class="btn btn-primary" id="new-recipe">New Recipe</a>
+      <a href="/new-recipe" class="btn btn-primary" id="new-recipe">New Recipe</a>
       <button class="btn btn-danger" id="logout">Logout</button>
     </nav>
     {{else}}
     <nav class="mr-4">
-          <a href="../signup" type="button" class="btn btn-light">Sign up</a>
-          <a href="../login" type="button" class="btn btn-primary">Login</a>
+      <a href="/signup" type="button" class="btn btn-light">Sign up</a>
+      <a href="/login" type="button" class="btn btn-primary">Login</a>
     </nav>
     {{/if}}
   </header>
@@ -35,12 +37,13 @@
 
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
-  
+
   {{/if}}
-  <script src="/js/signup.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/6873a403e7.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
