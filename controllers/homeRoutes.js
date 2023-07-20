@@ -29,11 +29,13 @@ router.get("/", withAuth, async (req, res) => {
       where: { owner_id: req.session.user_id },
     });
 
+    const noRecipe = recipeData.length === 0;
+
     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
 
     // res.status(200).json(recipes)
     console.log(recipes, "is this working");
-    res.render("homepage", { recipes, logged_in: true });
+    res.render("homepage", { recipes, noRecipe, logged_in: true });
     
   } catch (err) {
     res.status(500).json(err);
